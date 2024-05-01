@@ -112,6 +112,8 @@
         };
 
         adjust_layer {
+            display-name = "adjust";
+
             // ----------------------------------------------------------------------------------------------------------------------------
             // | BTCLR  |  BT1    |  BT2    |   BT3   |   BT4   |   BT5   |                  |      |      |       |      |       |       |
             // | EXTPWR | RGB_HUD | RGB_HUI | RGB_SAD | RGB_SAI | RGB_EFF |                  |      |      |       |      |       |       |
@@ -119,7 +121,6 @@
             // |        |         |         |         |         |         | RGB_TOG | |      |      |      |       |      |       |       |
             //                    |         |         |         |         |         | |      |      |      |       |      |
 
-            display-name = "adjust";
             bindings = <
 &bt BT_CLR         &bt BT_SEL 0     &bt BT_SEL 1     &bt BT_SEL 2     &bt BT_SEL 3     &bt BT_SEL 4                               &none  &none  &none  &none  &none  &none
 &ext_power EP_TOG  &rgb_ug RGB_HUD  &rgb_ug RGB_HUI  &rgb_ug RGB_SAD  &rgb_ug RGB_SAI  &rgb_ug RGB_EFF                            &none  &none  &none  &none  &none  &none
@@ -128,66 +129,65 @@
                                     &none            &none            &none            &none            &none              &none  &none  &none  &none  &none
             >;
         };
+
 #ifdef HAS_MOUSE_KEYS
-    MouseKeys_layer {
-      display-name = "MouseKeys";
-      bindings = < 
-    &ext_power EP_TOG
-//  1                 2                 3                 4                 5                 6                      7                 8                 9                 10                11                12
-// ╭─────────────────┬─────────────────┬─────────────────┬─────────────────┬─────────────────┬─────────────────╮    ╭─────────────────┬─────────────────┬─────────────────┬─────────────────┬─────────────────┬─────────────────╮
-    &trans            &none             &none             &none             &none             &none                  &none             &none             &none             &none             &none             &trans
-// ├─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┤    ├─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┤
-    &trans            &none             &none             &none             &msc SCRL_DOWN    &none                  &none             &none             &none             &none             &none             &trans
-// ├─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┤    ├─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┤
-    &trans            &none             &mmv MOVE_LEFT    &mmv MOVE_UP      &mmv MOVE_RIGHT   &none                  &none             &none             &none             &none             &none             &trans
-// ├─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┤    ├─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┤
-    &trans            &none             &none             &mmv MOVE_DOWN    &msc SCRL_UP      &none                  &none             &none             &none             &none             &none             &trans
-// ╰─────────────────┴─────────────────┴─────────────────┴─────────────────┼─────────────────┼─────────────────┤    ├─────────────────┼─────────────────┼─────────────────┼─────────────────┴─────────────────┼─────────────────╯
-                      &none             &none             &tog MOUSE_KEYS   &mkp LCLK         &mkp RCLK              &mkp MCLK         &mkp LCLK         &mkp RCLK         &none             &none
-//                   ╰─────────────────┴─────────────────┴─────────────────┴─────────────────┴─────────────────╯    ╰─────────────────┴─────────────────┴─────────────────┴─────────────────┴─────────────────╯
-      >;
-     //  sensor-bindings = <&inc_dec_kp C_BRI_DN C_BRI_UP &inc_dec_kp LEFT RIGHT>;
-    };
+        MouseKeys_layer {
+            display-name = "MouseKeys";
+
+            // -----------------------------------------------------------------------------------------------------------------------------
+            // |        |         |         |          |          |         |                  |      |      |       |      |       |       |
+            // | EXTPWR |         |         |          |SCRL_DOWN |         |                  |      |      |       |      |       |       |
+            // |        |         |MOVE_LEFT|MOVE_UP   |MOVE_RIGHT|         |                  |      |      |       |      |       |       |
+            // |        |         |         |MOVE_DOWN |SCRL_UP   |         |         | |      |      |      |       |      |       |       |
+            //                    |         |MOUSE_KEYS|LCLK      |RCLK     |         | |      |MCLK  |LCLK  |RCLK   |      |
+
+            bindings = < 
+&trans             &none        &none           &none            &none            &none                       &none             &none             &none             &none             &none             &trans
+&ext_power EP_TOG  &none        &none           &none            &msc SCRL_DOWN   &none                       &none             &none             &none             &none             &none             &trans
+&trans             &none        &mmv MOVE_LEFT  &mmv MOVE_UP     &mmv MOVE_RIGHT  &none                       &none             &none             &none             &none             &none             &trans
+&trans             &none        &none           &mmv MOVE_DOWN   &msc SCRL_UP     &none       &none   &none   &none             &none             &none             &none             &none             &trans
+                                &none           &tog MOUSE_KEYS  &mkp LCLK        &mkp RCLK   &none   &none   &mkp MCLK         &mkp LCLK         &mkp RCLK         &none
+            >;
+        };
 #endif
 
 #ifdef HAS_MOUSE_TP
-    MouseTP_layer {
-      display-name = "TP";
-      bindings = <
-//  1                 2                 3                 4                 5                 6                      7                 8                 9                 10                11                12
-// ╭─────────────────┬─────────────────┬─────────────────┬─────────────────┬─────────────────┬─────────────────╮    ╭─────────────────┬─────────────────┬─────────────────┬─────────────────┬─────────────────┬─────────────────╮
-    &trans            &none             &none             &none             &none             &none                  &none             &none             &none             &none             &none             &trans
-// ├─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┤    ├─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┤
-    &tog MOUSE_SET    &trans            &trans            &trans            &trans            &trans                 &trans            &kp MY_BACK       &kp MY_FWD        &trans            &trans            &trans
-// ├─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┤    ├─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┤
-    &trans            &trans            &trans            &msc SCRL_DOWN    &trans            &trans                 &trans            &trans            &msc SCRL_DOWN    &trans            &trans            &trans
-// ├─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┤    ├─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┤
-    &trans            &trans            &trans            &msc SCRL_UP      &trans            &trans                 &trans            &trans            &msc SCRL_UP      &trans            &trans            &trans
-// ╰─────────────────┴─────────────────┴─────────────────┴─────────────────┼─────────────────┼─────────────────┤    ├─────────────────┼─────────────────┼─────────────────┼─────────────────┴─────────────────┼─────────────────╯
-                      &none             &none             &tog MOUSE_TP     &trans            &trans                 &trans            &mkp LCLK         &mkp RCLK         &none             &none
-//                   ╰─────────────────┴─────────────────┴─────────────────┴─────────────────┴─────────────────╯    ╰─────────────────┴─────────────────┴─────────────────┴─────────────────┴─────────────────╯
-      >;
-     //  sensor-bindings = <&inc_dec_kp C_BRI_DN C_BRI_UP &inc_dec_kp LEFT RIGHT>;
-    };
+        MouseTP_layer {
+            display-name = "TP";
+
+            // -----------------------------------------------------------------------------------------------------------------------------
+            // |         |         |         |          |          |         |                  |      |       |         |      |       |       |
+            // |MOUSE_SET|         |         |          |          |         |                  |      |MY_BACK|MY_FWD   |      |       |       |
+            // |         |         |         |SCRL_DOWN |          |         |                  |      |       |SCRL_DOWN|      |       |       |
+            // |         |         |         |SCRL_UP   |          |         |         | |      |      |       |SCRL_UP  |      |       |       |
+            //                     |         |MOUSE_TP  |          |         |         | |      |      |LCLK   |RCLK     |      |
+
+            bindings = <
+&trans          &none           &none           &none             &none           &none                    &none           &none             &none             &none             &none             &trans
+&tog MOUSE_SET  &trans          &trans          &trans            &trans          &trans                   &trans          &kp MY_BACK       &kp MY_FWD        &trans            &trans            &trans
+&trans          &trans          &trans          &msc SCRL_DOWN    &trans          &trans                   &trans          &trans            &msc SCRL_DOWN    &trans            &trans            &trans
+&trans          &trans          &trans          &msc SCRL_UP      &trans          &trans   &none   &none   &trans          &trans            &msc SCRL_UP      &trans            &trans            &trans
+                                &none           &tog MOUSE_TP     &trans          &trans   &none   &none   &trans          &mkp LCLK         &mkp RCLK         &none
+            >;
+        };
 
     MouseSettings_layer {
-      display-name = "MouseSettings";
-      bindings = <
-//  1                 2                 3                 4                 5                 6                      7                 8                 9                 10                11                12
-// ╭─────────────────┬─────────────────┬─────────────────┬─────────────────┬─────────────────┬─────────────────╮    ╭─────────────────┬─────────────────┬─────────────────┬─────────────────┬─────────────────┬─────────────────╮
-    &trans            &none             &none             &none             &none             &none                  &none             &none             &none             &none             &none             &trans
-// ├─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┤    ├─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┤
-    &trans            &none             &none             U_MSS_TP_S_D      U_MSS_TP_S_I      U_MSS_TP_PT_I          &none             &none             &none             &none             &none             U_MSS_RESET
-// ├─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┤    ├─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┤
-    &trans            &none             &none             U_MSS_TP_NI_D     U_MSS_TP_NI_I     U_MSS_TP_PT_D          &none             &none             &none             &none             &none             U_MSS_LOG
-// ├─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┤    ├─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┤
-    &trans            &none             &none             U_MSS_TP_V6_D     U_MSS_TP_V6_I     &none                  &none             &none             &none             &none             &none             &trans
-// ├─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┤    ├─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┤
-                      &none             &none             &tog MOUSE_SET    &mkp LCLK         &mkp RCLK              &none             &mkp LCLK         &mkp RCLK         &none             &none
-//                   ╰─────────────────┴─────────────────┴─────────────────┴─────────────────┴─────────────────╯    ╰─────────────────┴─────────────────┴─────────────────┴─────────────────┴─────────────────╯
-      >;
-     //  sensor-bindings = <&inc_dec_kp C_BRI_DN C_BRI_UP &inc_dec_kp LEFT RIGHT>;
-    };
+            display-name = "MouseSettings";
+            // -----------------------------------------------------------------------------------------------------------------------------------------
+            // |         |         |         |             |             |         |                  |      |      |       |      |       |           |
+            // |         |         |         |U_MSS_TP_S_D |U_MSS_TP_S_I |         |                  |      |      |       |      |       |U_MSS_RESET|
+            // |         |         |         |U_MSS_TP_NI_D|U_MSS_TP_NI_I|         |                  |      |      |       |      |       |U_MSS_LOG  |
+            // |         |         |         |U_MSS_TP_V6_D|U_MSS_TP_V6_I|         |         | |      |      |      |       |      |       |           |
+            //                     |         |MOUSE_SET    |LCLK         |RCLK     |         | |      |      |LCLK  |RCLK   |      |
+
+            bindings = <
+&trans        &none           &none             &none             &none             &none                          &none         &none         &none         &none         &none         &trans
+&trans        &none           &none             U_MSS_TP_S_D      U_MSS_TP_S_I      U_MSS_TP_PT_I                  &none         &none         &none         &none         &none         U_MSS_RESET
+&trans        &none           &none             U_MSS_TP_NI_D     U_MSS_TP_NI_I     U_MSS_TP_PT_D                  &none         &none         &none         &none         &none         U_MSS_LOG
+&trans        &none           &none             U_MSS_TP_V6_D     U_MSS_TP_V6_I     &none          &none   &none   &none         &none         &none         &none         &none         &trans
+                              &none             &tog MOUSE_SET    &mkp LCLK         &mkp RCLK      &none   &none   &none         &mkp LCLK     &mkp RCLK     &none 
+            >;
+        };
 #endif
 
     };
