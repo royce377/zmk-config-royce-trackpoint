@@ -28,9 +28,9 @@
 #define LOWER 1
 #define RAISE 2
 #define ADJUST 3
-#define MOUSE_KEYS 11
-#define MOUSE_TP 12
-#define MOUSE_SET 13
+#define MOUSE_KEYS 4
+#define MOUSE_TP 5
+#define MOUSE_SET 6
 
 / {
     // Activate ADJUST layer by pressing raise and lower
@@ -65,7 +65,8 @@
                    &kp LGUI  &kp LALT  &kp LCTRL  &mo LOWER  &kp RET       &kp SPACE  &mo RAISE  &kp RCTRL  &kp RALT   &kp K_CONTEXT_MENU
             >;
 
-            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &inc_dec_kp PG_UP PG_DN>;
+            //sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &inc_dec_kp PG_UP PG_DN>;
+            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
         };
 
         lower_layer {
@@ -87,7 +88,8 @@
                       &trans     &trans       &trans    &trans     &trans    &trans  &trans     &trans    &trans           &trans
             >;
 
-            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &inc_dec_kp PG_UP PG_DN>;
+            //sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &inc_dec_kp PG_UP PG_DN>;
+            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
         };
 
         raise_layer {
@@ -108,7 +110,8 @@
                    &trans     &trans      &trans     &trans    &trans    &trans  &trans          &trans     &trans    &trans
             >;
 
-            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &inc_dec_kp PG_UP PG_DN>;
+            //sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &inc_dec_kp PG_UP PG_DN>;
+            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
         };
 
         adjust_layer {
