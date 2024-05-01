@@ -1,7 +1,8 @@
 # Copyright (c) 2020 Ryan Cross
 # SPDX-License-Identifier: MIT
 
-if SHIELD_SOFLE_LEFT
+# The side with the PS2 Mouse / TP has to be the central half
+if SHIELD_SOFLE_RIGHT
 
 config ZMK_KEYBOARD_NAME
     default "Sofle"
