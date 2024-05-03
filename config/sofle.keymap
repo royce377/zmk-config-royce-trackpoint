@@ -14,9 +14,9 @@
 // Personal includes
 #include <dt-bindings/zmk/mouse.h>
 #include <behaviors/mouse_move.dtsi>
+#include "includes/mouse_move.dtsi"
 //#ifdef HAS_MOUSE_KEYS
      #include "includes/mouse_keys.dtsi"
-//     #include "includes/mouse_move.dtsi"
 //#endif
 
 //#ifdef HAS_MOUSE_TP
