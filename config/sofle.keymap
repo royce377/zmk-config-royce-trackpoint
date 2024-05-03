@@ -13,23 +13,26 @@
 
 /* Enable keymap features that require forks */
 #define HAS_UROB
-//#define HAS_MOUSE_KEYS
-#define HAS_MOUSE_KEYS y
+#define HAS_MOUSE_KEYS
 #define HAS_MOUSE_TP
 
 // Personal includes
 #include <dt-bindings/zmk/mouse.h>
 #include <behaviors/mouse_move.dtsi>
-//#include "includes/mouse_move.dtsi"
-#include "includes/mouse_keys.dtsi"
-//#ifdef HAS_MOUSE_KEYS
-//     #include "includes/mouse_keys.dtsi"
-//#endif
 
-#include "includes/mouse_tp.dtsi"
-//#ifdef HAS_MOUSE_TP
-//     #include "includes/mouse_tp.dtsi"
-//#endif
+#ifdef HAS_MOUSE_KEYS
+    #include "includes/mouse_keys.dtsi"
+#endif
+
+#ifdef HAS_MOUSE_TP
+     #include "includes/mouse_tp.dtsi"
+#endif
+
+#ifdef HAS_MOUSE_TP
+  #define U_TOG_TP_SET &tog MOUSE_TP_SET
+#else
+  #define U_TOG_TP_SET &none
+#endif  // HAS_MOUSE_TP
 
 #define BASE 0
 #define LOWER 1
