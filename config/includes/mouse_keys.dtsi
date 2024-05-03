@@ -1,6 +1,6 @@
-#ifdef HAS_MOUSE_KEYS
+//#ifdef HAS_MOUSE_KEYS
   #include <dt-bindings/zmk/mouse.h>
-#endif
+//#endif
 
 
 // Below are settings and behavior defines for mouse keys.
